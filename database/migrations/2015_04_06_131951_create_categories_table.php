@@ -17,7 +17,7 @@ class CreateCategoriesTable extends Migration
             $table->id();
             $table->string('slug');
             $table->string('title');
-            $table->string('description');
+            $table->string('description')->nullable();
             $table->timestamps();
             $table->index('slug');
         });

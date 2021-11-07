@@ -6,6 +6,14 @@ use App\Base\SluggableModel;
 use DateTimeInterface;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
+/**
+ * @property mixed $title
+ * @property mixed $slug
+ * @property mixed $category_id
+ * @property \Illuminate\Support\Carbon $published_at
+ * @property mixed $content
+ * @property mixed|string $image
+ */
 class Article extends SluggableModel
 {
     use HasFactory;
@@ -60,5 +68,13 @@ class Article extends SluggableModel
     public function getLinkAttribute(): string
     {
         return route('article', ['aSlug' => $this->slug]);
+    }
+
+    public function save($options = [])
+    {
+        if(!isset($this->published_at)) {
+            $this->published_at = now();
+        }
+        parent::save($options);
     }
 }

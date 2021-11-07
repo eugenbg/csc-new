@@ -19,11 +19,11 @@ class CreateArticlesTable extends Migration
             $table->date('published_at');
             $table->string('slug');
             $table->string('title');
-            $table->string('description');
+            $table->string('image')->nullable();
+            $table->string('description')->nullable();
             $table->text('content');
             $table->timestamps();
             $table->index(['published_at', 'slug']);
-            $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade');
         });
     }
 

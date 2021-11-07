@@ -6,6 +6,11 @@ use App\Base\SluggableModel;
 use DateTimeInterface;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
+/**
+ * @property mixed $title
+ * @property mixed|string $slug
+ * @property mixed $id
+ */
 class Category extends SluggableModel
 {
     use HasFactory;

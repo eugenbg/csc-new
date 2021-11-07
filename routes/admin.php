@@ -1,5 +1,7 @@
 <?php
 
+use Illuminate\Support\Facades\Route;
+
 Route::get('/', ['as' => 'dashboard.index', 'uses' => 'DashboardController@getIndex']);
 Route::resource('article', 'ArticleController');
 Route::resource('category', 'CategoryController');

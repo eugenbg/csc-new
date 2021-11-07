@@ -14,24 +14,4 @@ use Illuminate\Database\Eloquent\Model;
  * @mixin \Eloquent
  */
 class SluggableModel extends Model
-{
-    use Sluggable, SluggableScopeHelpers;
-
-    /**
-     * @var array
-     */
-    protected $guarded = ['created_at', 'id'];
-
-    /**
-     * @return array
-     */
-    public function sluggable()
-    {
-        return [
-            'slug' => [
-                'source'   => 'title',
-                'onUpdate' => true
-            ]
-        ];
-    }
-}
+{}

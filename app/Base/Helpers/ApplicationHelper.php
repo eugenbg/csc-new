@@ -44,7 +44,7 @@ if (!function_exists('getImage')) {
      *
      * @return string
      */
-    function getImage($object = null, $property = 'logo')
+    function getImage($object = null, $property = 'image')
     {
         if (is_object($object) && isset($object->$property)) {
             return asset($object->$property);
