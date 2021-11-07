@@ -12,5 +12,5 @@
 */
 
 Route::get('/', ['as' => 'root', 'uses' => 'PageController@getIndex']);
-Route::get('{slug}', ['as' => 'article', 'uses' => 'PageController@routeMatch']);
 Route::get('sitemap.xml', ['as' => 'sitemap', 'uses' => 'PageController@getSitemap']);
+Route::fallback(['as' => 'slug', 'uses' => 'PageController@routeMatch']);

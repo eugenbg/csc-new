@@ -13,7 +13,6 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class PageController extends Controller
 {
-
     public function routeMatch($slug, Request $request)
     {
         /** @var Slug $slug */
@@ -27,9 +26,12 @@ class PageController extends Controller
 
         switch ($slug->type) {
             case Article::class:
-                $article = Article::query()
-                    ->find($slug->object_id);
+                $article = Article::query()->find($slug->object_id);
                 return $this->getArticle($article);
+
+            case Category::class:
+                $category = Category::query()->find($slug->object_id);
+                return $this->getCategory($category);
         }
     }
 

@@ -7,9 +7,28 @@ use DateTimeInterface;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 /**
+ * App\Models\Category
+ *
  * @property mixed $title
  * @property mixed|string $slug
  * @property mixed $id
+ * @property string|null $description
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Article[] $articles
+ * @property-read int|null $articles_count
+ * @property-read string $link
+ * @method static \Database\Factories\CategoryFactory factory(...$parameters)
+ * @method static \Illuminate\Database\Eloquent\Builder|Category newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Category newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Category query()
+ * @method static \Illuminate\Database\Eloquent\Builder|Category whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Category whereDescription($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Category whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Category whereSlug($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Category whereTitle($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Category whereUpdatedAt($value)
+ * @mixin \Eloquent
  */
 class Category extends SluggableModel
 {
@@ -39,6 +58,6 @@ class Category extends SluggableModel
      */
     public function getLinkAttribute(): string
     {
-        return route('category', ['cSlug' => $this->slug]);
+        return route('slug', ['fallbackPlaceholder' => $this->slug]);
     }
 }
