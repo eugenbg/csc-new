@@ -189,7 +189,8 @@ return [
         Laravel\Tinker\TinkerServiceProvider::class,
         Spatie\Analytics\AnalyticsServiceProvider::class,
         Yajra\DataTables\ButtonsServiceProvider::class,
-        Yajra\DataTables\DatatablesServiceProvider::class
+        Yajra\DataTables\DatatablesServiceProvider::class,
+        Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class,
     ],
 
     /*

@@ -15,6 +15,7 @@ class Kernel extends ConsoleKernel
     protected $commands = [
         \App\Console\Commands\Cms\Initialize::class,
         \App\Console\Commands\WpImportContent::class,
+        \App\Console\Commands\IndexSlugs::class,
         \App\Console\Commands\Cms\Resource::class
     ];
 

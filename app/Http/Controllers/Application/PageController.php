@@ -7,9 +7,32 @@ use App\Http\Controllers\Controller;
 use App\Models\Article;
 use App\Models\Category;
 use App\Models\Page;
+use App\Models\Slug;
+use Illuminate\Http\Request;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class PageController extends Controller
 {
+
+    public function routeMatch($slug, Request $request)
+    {
+        /** @var Slug $slug */
+        $slug = Slug::query()
+            ->where('slug', '=', $slug)
+            ->first();
+
+        if(!$slug) {
+            throw new NotFoundHttpException('Sorry this page does not exist');
+        }
+
+        switch ($slug->type) {
+            case Article::class:
+                $article = Article::query()
+                    ->find($slug->object_id);
+                return $this->getArticle($article);
+        }
+    }
+
     /**
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
