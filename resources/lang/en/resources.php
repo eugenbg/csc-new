@@ -93,5 +93,16 @@ return [
         ],
         'index'  => 'Users',
         'show'   => 'Show user'
+    ],
+    'china_university' => [
+        'create' => 'Create a China University',
+        'edit'   => 'Edit a China University',
+        'fields' => [
+          'content'     => 'Content',
+          'description' => 'Description',
+          'title'       => 'Title'
+        ],
+        'index'  => 'ChinaUniversities',
+        'show'   => 'Show a ChinaUniversity'
     ]
 ];

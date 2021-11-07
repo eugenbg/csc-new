@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use App\Models\Article;
 use App\Models\Category;
+use App\Models\ChinaUniversity;
 use App\Models\Page;
 use App\Models\User;
 use Illuminate\Cache\RateLimiting\Limit;
@@ -71,6 +72,7 @@ class RouteServiceProvider extends ServiceProvider
         Route::model('category', Category::class);
         Route::model('page', Page::class);
         Route::model('user', User::class);
+        Route::model('china_university', ChinaUniversity::class);
         /** GENERATOR_MODEL_BINDER **/
     }
 
@@ -90,6 +92,9 @@ class RouteServiceProvider extends ServiceProvider
         });
         Route::bind('pSlug', function ($slug) {
             return Page::with('parent')->where('slug', $slug)->firstOrFail();
+        });
+        Route::bind('china_universitySlug', function ($slug) {
+            return ChinaUniversity::where('slug', $slug)->firstOrFail();
         });
         /** GENERATOR_PARAMETER_BINDER **/
     }
