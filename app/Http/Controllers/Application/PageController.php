@@ -6,6 +6,8 @@ use App\Base\Services\SitemapService;
 use App\Http\Controllers\Controller;
 use App\Models\Article;
 use App\Models\Category;
+use App\Models\ChinaUniImage;
+use App\Models\ChinaUniversity;
 use App\Models\Page;
 use App\Models\Slug;
 use Illuminate\Http\Request;
@@ -32,6 +34,10 @@ class PageController extends Controller
             case Category::class:
                 $category = Category::query()->find($slug->object_id);
                 return $this->getCategory($category);
+
+            case ChinaUniversity::class:
+                $uni = ChinaUniversity::query()->find($slug->object_id);
+                return $this->getChinaUni($uni);
         }
     }
 
@@ -90,5 +96,26 @@ class PageController extends Controller
     public function getSitemap(SitemapService $sitemapService)
     {
         return $sitemapService->render();
+    }
+
+    private function getChinaUni(?ChinaUniversity $uni)
+    {
+        $campusImages = [];
+        $dormImages = [];
+        foreach ($uni->images as $image) {
+            if($image->type == ChinaUniImage::TYPE_CAMPUS) {
+                $campusImages[] = $image;
+            }
+            if($image->type == ChinaUniImage::TYPE_DORM) {
+                $dormImages[] = $image;
+            }
+        }
+
+        return view('app.china-uni', [
+            'uni' => $uni,
+            'programs' => $uni->getPrograms(),
+            'campusImages' => $campusImages,
+            'dormImages' => $dormImages,
+        ]);
     }
 }

@@ -14,3 +14,9 @@ iframe {
   background: -webkit-linear-gradient(to right, $primary, darken($primary, 5%));
   background: linear-gradient(to right, $primary, darken($primary, 5%));
 }
+
+.carousel-inner .carousel-item > div {
+    height:500px;
+    background-size:cover;
+    background-position: center center;
+}

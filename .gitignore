@@ -16,3 +16,4 @@ _ide_helper.php
 !resources/views/vendor
 public/mix-manifest.json
 public/blog-images
+public/images
