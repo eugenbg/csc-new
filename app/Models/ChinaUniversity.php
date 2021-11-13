@@ -19,6 +19,8 @@ use Illuminate\Support\Collection;
  * @property-read string $link
  * @property Collection $programs
  * @property Collection $images
+ * @property Collection $dorms
+ * @property Collection $scholarships
  * @method static \Illuminate\Database\Eloquent\Builder|ChinaUniversity newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|ChinaUniversity newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|ChinaUniversity query()
@@ -72,6 +74,16 @@ class ChinaUniversity extends SluggableModel
     public function images(): HasMany
     {
         return $this->hasMany(ChinaUniImage::class, 'university_id', 'id');
+    }
+
+    public function dorms(): HasMany
+    {
+        return $this->hasMany(ChinaUniDorm::class, 'university_id', 'id');
+    }
+
+    public function scholarships(): HasMany
+    {
+        return $this->hasMany(ChinaScholarship::class, 'university_id', 'id');
     }
 
 }

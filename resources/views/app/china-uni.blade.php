@@ -10,6 +10,52 @@
         <div class="container">
             <h1>{{$uni->name}}</h1>
 
+            <div id="scholarships">
+                <h2>Applicable sScholarships</h2>
+                <div class="row">
+                    @foreach ($scholarships as $scholarship)
+                        <div class="col-sm-6">
+                            <div class="card text-white bg-success mb-3" style="max-width: 18rem;">
+                                <div class="card-header">{{$scholarship->name}}</div>
+                                <div class="card-body">
+                                    <h5 class="card-title">CSC scholarship</h5>
+                                </div>
+                            </div>
+                        </div>
+                    @endforeach
+                </div>
+            </div>
+
+            <div id="dorms">
+                <h2>Available Dorm Rooms</h2>
+                <table class="table table-hover table-success table-striped">
+                    <thead>
+                    <tr>
+                        <th scope="col">Room Type</th>
+                        <th scope="col">Price</th>
+                        <th scope="col">Toilet</th>
+                        <th scope="col">Bathroom</th>
+                        <th scope="col">Internet</th>
+                        <th scope="col">Air Conditioner</th>
+                        <th scope="col">Comments</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    @foreach ($dorms as $dorm)
+                        <tr>
+                            <td>{{$dorm->type}}</td>
+                            <td>{{$dorm->rate}}</td>
+                            <td>{{$dorm->toilet}}</td>
+                            <td>{{$dorm->bathroom}}</td>
+                            <td>{{$dorm->internet}}</td>
+                            <td>{{$dorm->airConditioner}}</td>
+                            <td>{{$dorm->comments}}</td>
+                        </tr>
+                    @endforeach
+                    </tbody>
+                </table>
+            </div>
+
             <div class="row">
                 <div class="col-sm-12 col-md-6">
                     <h2>Campus Photos</h2>

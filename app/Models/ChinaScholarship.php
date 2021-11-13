@@ -2,20 +2,17 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Model;
 
 /**
- * App\Models\ChinaUniProgram
+ * App\Models\ChinaScholarship
  * @property mixed $type
  */
-class ChinaUniImage extends Model
+class ChinaScholarship extends Model
 {
-    protected $table = 'uni_images';
+    protected $table = 'uni_scholarships';
     public $timestamps = false;
-
-    const TYPE_CAMPUS = 'campus';
-    const TYPE_DORM = 'dorm';
 
     /**
      * Get the University that owns this program.

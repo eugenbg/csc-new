@@ -116,6 +116,8 @@ class PageController extends Controller
             'programs' => $uni->getPrograms(),
             'campusImages' => $campusImages,
             'dormImages' => $dormImages,
+            'dorms' => $uni->dorms,
+            'scholarships' => $uni->scholarships,
         ]);
     }
 }
