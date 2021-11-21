@@ -64,7 +64,11 @@ class SpellController extends AdminController
     public function edit(Spell $spell)
     {
         $generated = Session::get('generated');
-        return view('admin.forms.spell', array_merge($this->formVariables('spell', $spell), ['generated' => $generated]));
+        $inputText = Session::get('inputText');
+        return view('admin.forms.spell', array_merge($this->formVariables('spell', $spell), [
+            'generated' => $generated,
+            'inputText' => $inputText
+        ]));
     }
 
     /**
@@ -76,7 +80,11 @@ class SpellController extends AdminController
      */
     public function update(Spell $spell, Request $request)
     {
-        return $this->saveFlashRedirect($spell, $request);
+        $this->validate($request, $this->validation);
+        $spell->fill($this->getData($request, false));
+        $spell->save();
+
+        return Redirect::route('admin.spell.edit', $spell->id);
     }
 
     /**
@@ -96,13 +104,12 @@ class SpellController extends AdminController
         $spell = Spell::findOrFail($spellId);
         $result = TextGenerationService::generate(
             $inputText,
-            $spell->prompt,
-            $spell->tokens,
-            $spell->temperature,
-            $spell->top_p,
-            $spell->frequency_penalty
+            $spell
         );
 
-        return Redirect::route('admin.spell.edit', $spellId)->with( ['generated' => $result] );
+        return Redirect::route('admin.spell.edit', $spellId)->with( [
+            'generated' => $result,
+            'inputText' => $inputText
+        ] );
     }
 }

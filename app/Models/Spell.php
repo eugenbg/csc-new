@@ -29,6 +29,15 @@ class Spell extends Model
 {
     public $timestamps = false;
 
+    public $engines = [
+        'ada',
+        'babbage',
+        'curie',
+        'curie-instruct-beta',
+        'davinci',
+        'davinci-instruct-beta',
+    ];
+
     protected $fillable = [
         'title',
         'prompt',
