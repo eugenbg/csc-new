@@ -29,7 +29,7 @@ class Spell extends Model
 {
     public $timestamps = false;
 
-    public $engines = [
+    public static $engines = [
         'ada',
         'babbage',
         'curie',

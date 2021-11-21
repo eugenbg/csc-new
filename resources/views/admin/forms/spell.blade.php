@@ -17,8 +17,8 @@
         <label class="label">Engine</label>
         <div class="control">
             <select name="engine">
-                @foreach ($spell->engines as $engine)
-                    <option {{ $spell->engine == $engine ? 'selected' : '' }} value="{{$engine}}">{{ $engine }}</option>
+                @foreach (\App\Models\Spell::$engines as $engine)
+                    <option {{ $spell->engine ?? null == $engine ? 'selected' : '' }} value="{{$engine}}">{{ $engine }}</option>
                 @endforeach
             </select>
         </div>
