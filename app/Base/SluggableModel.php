@@ -17,7 +17,6 @@ use Symfony\Component\HttpFoundation\Exception\BadRequestException;
  * @method static \Illuminate\Database\Eloquent\Builder|SluggableModel newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|SluggableModel newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|SluggableModel query()
- *
  * @property string $slug
  * @property int $id
  */

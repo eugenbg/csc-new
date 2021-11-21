@@ -104,5 +104,16 @@ return [
         ],
         'index'  => 'ChinaUniversities',
         'show'   => 'Show a ChinaUniversity'
+    ],
+    'spell' => [
+        'create' => 'Create a Spell',
+        'edit'   => 'Edit a Spell',
+        'fields' => [
+          'content'     => 'Content',
+          'description' => 'Description',
+          'title'       => 'Title'
+        ],
+        'index'  => 'Spells',
+        'show'   => 'Show a Spell'
     ]
 ];

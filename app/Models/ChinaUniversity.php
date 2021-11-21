@@ -32,6 +32,15 @@ use Illuminate\Support\Collection;
  * @method static \Illuminate\Database\Eloquent\Builder|ChinaUniversity whereTitle($value)
  * @method static \Illuminate\Database\Eloquent\Builder|ChinaUniversity whereUpdatedAt($value)
  * @mixin \Eloquent
+ * @property string $name
+ * @property string $region
+ * @property-read int|null $dorms_count
+ * @property-read int|null $images_count
+ * @property-read int|null $programs_count
+ * @property-read int|null $scholarships_count
+ * @method static \Illuminate\Database\Eloquent\Builder|ChinaUniversity whereLink($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|ChinaUniversity whereName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|ChinaUniversity whereRegion($value)
  */
 class ChinaUniversity extends SluggableModel
 {
