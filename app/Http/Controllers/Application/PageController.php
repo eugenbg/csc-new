@@ -46,10 +46,9 @@ class PageController extends Controller
      */
     public function getIndex()
     {
-        return view('app.articles', [
-            'title' => getTitle(),
-            'description' => getDescription(),
-            'articles' => Article::published()->paginate(4)
+        $unis = ChinaUniversity::query()->limit(20)->get();
+        return view('app.main', [
+            'unis' => $unis
         ]);
     }
 

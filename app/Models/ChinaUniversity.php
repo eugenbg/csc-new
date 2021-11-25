@@ -51,7 +51,7 @@ class ChinaUniversity extends SluggableModel
      */
     public function getLinkAttribute(): string
     {
-        return route('china_university', ['china_universitySlug' => $this->slug]);
+        return route('slug', ['fallbackPlaceholder' => $this->slug]);
     }
 
     public function programs(): HasMany
@@ -93,6 +93,11 @@ class ChinaUniversity extends SluggableModel
     public function scholarships(): HasMany
     {
         return $this->hasMany(ChinaScholarship::class, 'university_id', 'id');
+    }
+
+    public function getImage()
+    {
+        return $this->images()->where('type', '=', ChinaUniImage::TYPE_CAMPUS)->first();
     }
 
 }
