@@ -24,6 +24,13 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|Spell whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Spell whereTitle($value)
  * @mixin \Eloquent
+ * @property string $presence_penalty
+ * @method static \Illuminate\Database\Eloquent\Builder|Spell whereFrequencyPenalty($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Spell wherePresencePenalty($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Spell wherePrompt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Spell whereTemperature($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Spell whereTokens($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Spell whereTopP($value)
  */
 class Spell extends Model
 {

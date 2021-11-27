@@ -41,6 +41,8 @@ use Illuminate\Support\Collection;
  * @method static \Illuminate\Database\Eloquent\Builder|ChinaUniversity whereLink($value)
  * @method static \Illuminate\Database\Eloquent\Builder|ChinaUniversity whereName($value)
  * @method static \Illuminate\Database\Eloquent\Builder|ChinaUniversity whereRegion($value)
+ * @property string $abbr
+ * @method static \Illuminate\Database\Eloquent\Builder|ChinaUniversity whereAbbr($value)
  */
 class ChinaUniversity extends SluggableModel
 {
