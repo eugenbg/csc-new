@@ -34,6 +34,11 @@ class Category extends SluggableModel
 {
     use HasFactory;
 
+    protected $fillable = [
+        'title',
+        'description'
+    ];
+
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */

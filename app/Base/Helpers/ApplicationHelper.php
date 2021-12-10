@@ -128,6 +128,16 @@ if (!function_exists('getMenu')) {
      */
     function getMenu()
     {
+        return [
+            'CSC Universities' => [
+                'slug' => '',
+                'children'=> [
+                    'Uni 1' => ['slug' => 'uni 1'],
+                    'Uni 2' => ['slug' => 'uni 2'],
+                ]
+            ]
+        ];
+
         return cache()->remember('menu', 60, function () {
             return \App\Models\Page::where('parent_id', null)->with('children')->get();
         });
@@ -158,6 +168,7 @@ if (!function_exists('active')) {
      */
     function active($object, $property = 'slug')
     {
+        return false;
         return strpos(request()->url(), $object->$property) !== false ? 'is-active' : '';
     }
 }

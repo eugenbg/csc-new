@@ -43,6 +43,8 @@ class Article extends SluggableModel
 {
     use HasFactory;
 
+    protected $guarded = [];
+
     /**
      * Carbon instance fields
      *

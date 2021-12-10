@@ -4,6 +4,7 @@ namespace App\Console\Commands;
 
 use App\Models\Article;
 use App\Models\Category;
+use App\Models\ChinaUniversity;
 use App\Models\Slug;
 use Illuminate\Console\Command;
 
@@ -40,6 +41,8 @@ class IndexSlugs extends Command
      */
     public function handle()
     {
+        Slug::query()->truncate();
+
         $articles = Article::query()
             ->select(['id as object_id', 'slug'])
             ->get()
@@ -58,6 +61,15 @@ class IndexSlugs extends Command
             $cat['type'] = Category::class;
         }
 
-        Slug::query()->insert(array_merge($articles, $cats));
+        $unis = ChinaUniversity::query()
+            ->select(['id as object_id', 'slug'])
+            ->get()
+            ->toArray();
+
+        foreach ($unis as &$uni) {
+            $uni['type'] = ChinaUniversity::class;
+        }
+
+        Slug::query()->insert(array_merge($articles, $cats, $unis));
     }
 }

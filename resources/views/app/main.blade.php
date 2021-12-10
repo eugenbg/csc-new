@@ -1,4 +1,7 @@
 @extends('layouts.app')
+
+@section('title')China Scholarship Council (CSC) Guide@endsection
+
 @section('content')
 
     <style>
@@ -14,7 +17,22 @@
     </style>
     <section class="section">
         <div class="container">
+            <div class="columns">
+                <div class="column is-offset-2 is-8">
+                    <div class="box">
+                        <h1>China Scholarship Council (CSC)</h1>
+                        <div class="content">{!! $object->content !!}</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="container">
             <div class="row">
+                <h1 style="text-align: center">Universities Offering CSC Scholarships</h1>
+
                 @foreach ($unis as $uni)
                     <div class="card m-3" style="width: 18rem;">
                         @if($uni->getImage())
@@ -23,12 +41,9 @@
 
                         <div class="card-body">
                             <h5 class="card-title">{{$uni->name}}</h5>
-                            <p class="card-text">Some quick example text to build on the card title and make up the bulk
-                                of the card's content.</p>
-                            <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
                         </div>
                         <div class="card-body">
-                            <a href="{{$uni->link}}">Scholarship guide for {{$uni->name}}</a>
+                            <a href="{{$uni->link}}">CSC Guide for {{$uni->name}}</a>
                         </div>
 
                     </div>
@@ -36,5 +51,4 @@
             </div>
         </div>
     </section>
-
 @endsection

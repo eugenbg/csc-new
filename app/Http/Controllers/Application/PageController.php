@@ -47,8 +47,13 @@ class PageController extends Controller
     public function getIndex()
     {
         $unis = ChinaUniversity::query()->limit(20)->get();
+        $article = Article::query()
+            ->where('slug', '=', 'csc-china-scholarship-council-scholarships')
+            ->first();
+
         return view('app.main', [
-            'unis' => $unis
+            'unis' => $unis,
+            'object' => $article
         ]);
     }
 

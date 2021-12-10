@@ -12,25 +12,25 @@
         </div>
         <div id="menu" class="navbar-menu">
             <div class="navbar-start">
-                @foreach (getMenu() as $p)
-                    @if ($p->children->count() > 0)
+                @foreach (getMenu() as $linkText => $payload)
+                    @if (isset($payload['children']) && count($payload['children']) > 0)
                         <div class="navbar-item has-dropdown is-hoverable">
                             <div class="navbar-link">
-                                <a class="navbar-item {{ active($p) }}" href="{{ $p->link }}">
-                                    {{ $p->title }}
+                                <a class="navbar-item {{ active($payload['slug']) }}" href="{{ $payload['slug'] }}">
+                                    {{ $linkText }}
                                 </a>
                             </div>
                             <div class="navbar-dropdown">
-                                @foreach ($p->children as $child)
-                                    <a class="navbar-item {{ active($child) }}" href="{{ $child->link }}">
-                                        {{ $child->title }}
+                                @foreach ($payload['children'] as $childLinkText => $child)
+                                    <a class="navbar-item {{ active($child['slug']) }}" href="{{ $child['slug'] }}">
+                                        {{ $childLinkText }}
                                     </a>
                                 @endforeach
                             </div>
                         </div>
                     @else
-                        <a class="navbar-item" href="{{ $p->link }}">
-                            {{ $p->title }}
+                        <a class="navbar-item" href="{{ $payload['slug'] }}">
+                            {{ $linkText }}
                         </a>
                     @endif
                 @endforeach

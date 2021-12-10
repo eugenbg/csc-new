@@ -49,10 +49,10 @@ class WpImportContent extends Command
         $posts = [];
         $images = [];
         foreach ($data["channel"]["item"] as $datum) {
-            if($datum["wp_post_type"] == 'post') {
+            if(isset($datum["wp_post_type"]) && $datum["wp_post_type"] == 'post') {
                 $posts[] = $datum;
             }
-            if($datum["wp_post_type"] == 'attachment') {
+            if(isset($datum["wp_post_type"]) && $datum["wp_post_type"] == 'attachment') {
                 $images[$datum["wp_post_id"]] = $datum;
             }
         }
@@ -86,9 +86,11 @@ class WpImportContent extends Command
             $model->content = is_string($post["content_encoded"]) ? $post["content_encoded"] : '';
 
             $thumbnailId = null;
-            foreach ($post["wp_postmeta"] as $item) {
-                if($item["wp_meta_key"] == '_thumbnail_id') {
-                    $thumbnailId = $item["wp_meta_value"];
+            if(isset($post["wp_postmeta"])) {
+                foreach ($post["wp_postmeta"] as $item) {
+                    if($item["wp_meta_key"] == '_thumbnail_id') {
+                        $thumbnailId = $item["wp_meta_value"];
+                    }
                 }
             }
 
