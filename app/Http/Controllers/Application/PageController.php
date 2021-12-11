@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Application;
 
 use App\Base\Services\SitemapService;
+use App\Helper;
 use App\Http\Controllers\Controller;
 use App\Models\Article;
 use App\Models\Category;
@@ -46,14 +47,22 @@ class PageController extends Controller
      */
     public function getIndex()
     {
-        $unis = ChinaUniversity::query()->limit(20)->get();
+        $unis = ChinaUniversity::query()
+            ->leftJoin('uni_images', 'china_universities.id', '=', 'uni_images.university_id')
+            ->where('uni_images.type', '=', ChinaUniImage::TYPE_CAMPUS)
+            ->groupBy('china_universities.id');
+
+        $a = Helper::getSqlWithBindings($unis);
+
+        $unis = $unis->get();
+
         $article = Article::query()
             ->where('slug', '=', 'csc-china-scholarship-council-scholarships')
             ->first();
 
         return view('app.main', [
             'unis' => $unis,
-            'object' => $article
+            'article' => $article
         ]);
     }
 

@@ -5,22 +5,16 @@
         'description' => '',
     ])
 
-
     <section class="section">
         <div class="container">
             <h1>{{$uni->name}}</h1>
 
             <div id="scholarships">
-                <h2>Applicable sScholarships</h2>
+                <h2>Applicable Scholarships</h2>
                 <div class="row">
                     @foreach ($scholarships as $scholarship)
-                        <div class="col-sm-6">
-                            <div class="card text-white bg-success mb-3" style="max-width: 18rem;">
-                                <div class="card-header">{{$scholarship->name}}</div>
-                                <div class="card-body">
-                                    <h5 class="card-title">CSC scholarship</h5>
-                                </div>
-                            </div>
+                        <div class="card text-white bg-success m-1" style="max-width: 18rem;">
+                            <div class="card-header">{{$scholarship->name}}</div>
                         </div>
                     @endforeach
                 </div>
