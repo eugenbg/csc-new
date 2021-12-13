@@ -52,8 +52,6 @@ class PageController extends Controller
             ->where('uni_images.type', '=', ChinaUniImage::TYPE_CAMPUS)
             ->groupBy('china_universities.id');
 
-        $a = Helper::getSqlWithBindings($unis);
-
         $unis = $unis->get();
 
         $article = Article::query()
@@ -124,7 +122,18 @@ class PageController extends Controller
             }
         }
 
-        return view('app.china-uni', [
+        $unique = $uni->segment == 'unique';
+        $view = $unique ? 'app.china-uni-unique' : 'app.china-uni-flat';
+
+        if($unique) {
+            $content = $uni->generated_html;
+        } else {
+            $article = Article::query()->where('slug', '=', 'china-uni-flat')->first();
+            $content = str_replace('%uni', $uni->name, $article->content);
+        }
+
+        return view($view, [
+            'content' => $content,
             'uni' => $uni,
             'programs' => $uni->getPrograms(),
             'campusImages' => $campusImages,

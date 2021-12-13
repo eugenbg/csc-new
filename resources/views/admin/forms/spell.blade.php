@@ -38,7 +38,7 @@
                     <div class="field">
                         <label class="label" for="input">Input</label>
                         <div class="control">
-                            <input id="input" class="input is-large" value="" type="text" name="input"/>
+                            <textarea id="input" class="textarea" rows="10" type="text" name="input"></textarea>
                         </div>
                     </div>
                     <button type="submit" class="button is-info is-fullwidth is-large">Generate</button>

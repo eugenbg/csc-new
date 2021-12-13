@@ -12,14 +12,16 @@ class TextGenerationService {
         $client = new Client();
         $payload = sprintf($spell->prompt, $inputText);
         if($spell->tokens == 0) {
-            $tokens = count(explode(' ', $inputText)) * 1.5;
+            $tokens = round(count(explode(' ', $inputText)) * 1.5);
+        } else {
+            $tokens = $spell->tokens;
         }
         $apiKey = env('OPENAI_API_KEY');
         $response = $client->post(sprintf('https://api.openai.com/v1/engines/%s/completions', $spell->engine), [
             'headers' => ['Authorization' => sprintf('Bearer %s', $apiKey)],
             'json' => [
                 'prompt' => $payload,
-                'max_tokens' => $spell->tokens, //200
+                'max_tokens' => $tokens, //200
                 "temperature" => (float) $spell->temperature, //0.2
                 "top_p" => (float) $spell->top_p, //1
                 "frequency_penalty" => (float) $spell->frequency_penalty, //1

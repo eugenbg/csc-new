@@ -9,18 +9,8 @@ use Illuminate\Support\Collection;
 /**
  * App\Models\ChinaUniversity
  *
- * @property int $id
- * @property string $slug
- * @property string $title
- * @property string $description
- * @property string $content
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
- * @property-read string $link
- * @property Collection $programs
- * @property Collection $images
- * @property Collection $dorms
- * @property Collection $scholarships
  * @method static \Illuminate\Database\Eloquent\Builder|ChinaUniversity newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|ChinaUniversity newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|ChinaUniversity query()
@@ -32,17 +22,31 @@ use Illuminate\Support\Collection;
  * @method static \Illuminate\Database\Eloquent\Builder|ChinaUniversity whereTitle($value)
  * @method static \Illuminate\Database\Eloquent\Builder|ChinaUniversity whereUpdatedAt($value)
  * @mixin \Eloquent
+ * @method static \Illuminate\Database\Eloquent\Builder|ChinaUniversity whereLink($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|ChinaUniversity whereName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|ChinaUniversity whereRegion($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|ChinaUniversity whereAbbr($value)
  * @property string $name
+ * @property string $segment
  * @property string $region
+ * @property string $abbr
+ * @property string $generated
+ * @property string $generated_html
  * @property-read int|null $dorms_count
  * @property-read int|null $images_count
  * @property-read int|null $programs_count
  * @property-read int|null $scholarships_count
- * @method static \Illuminate\Database\Eloquent\Builder|ChinaUniversity whereLink($value)
- * @method static \Illuminate\Database\Eloquent\Builder|ChinaUniversity whereName($value)
- * @method static \Illuminate\Database\Eloquent\Builder|ChinaUniversity whereRegion($value)
- * @property string $abbr
- * @method static \Illuminate\Database\Eloquent\Builder|ChinaUniversity whereAbbr($value)
+ * @property-read string $link
+ * @property Collection $programs
+ * @property Collection $images
+ * @property Collection $dorms
+ * @property Collection $scholarships
+ * @property int $id
+ * @property string $slug
+ * @property string $title
+ * @property string $description
+ * @property string $content
+ *
  */
 class ChinaUniversity extends SluggableModel
 {
