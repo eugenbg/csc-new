@@ -86,6 +86,12 @@ class ChinaUniversity extends SluggableModel
         return $programsByDegreeAndName;
     }
 
+    public function getGeneratedTextPiece($pieceNumber)
+    {
+        $text1Arr = array_values(json_decode($this->generated, true));
+        return $text1Arr[$pieceNumber];
+    }
+
     public function images(): HasMany
     {
         return $this->hasMany(ChinaUniImage::class, 'university_id', 'id');

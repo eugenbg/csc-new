@@ -27,9 +27,9 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        //
+        $schedule->command('article:rewrite')
+            ->everyTwoMinutes();
     }
-
     /**
      * Register the commands for the application.
      *

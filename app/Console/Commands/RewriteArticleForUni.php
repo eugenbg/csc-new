@@ -11,12 +11,14 @@ use Symfony\Component\DomCrawler\Crawler;
 
 class RewriteArticleForUni extends Command
 {
+    const DEFAULT_ARTICLE_SOURCE = 'china-uni-flat-2';
+
     /**
      * The name and signature of the console command.
      *
      * @var string
      */
-    protected $signature = 'article:rewrite {uniId?}';
+    protected $signature = 'article:rewrite {uniId?} {sourceArticle?}';
 
     /**
      * The console command description.
@@ -43,8 +45,21 @@ class RewriteArticleForUni extends Command
     public function handle()
     {
         $uniId = $this->argument('uniId');
-        $uni = ChinaUniversity::find($uniId);
-        $sourceArticle = Article::query()->where('slug', '=', 'china-uni-flat')->first();
+        if($uniId) {
+            $uni = ChinaUniversity::find($uniId);
+        } else {
+            $uni = ChinaUniversity::query()
+                ->where('segment', '=', 'unique')
+                ->where('generated', '=', '')
+                ->orderBy('id')
+                ->first();
+        }
+
+        $sourceArticleSlug = $this->argument('sourceArticle')
+            ? $this->argument('sourceArticle')
+            : self::DEFAULT_ARTICLE_SOURCE;
+
+        $sourceArticle = Article::query()->where('slug', '=', $sourceArticleSlug)->first();
         $content = str_replace('%uni', $uni->name, $sourceArticle->content);
         $matches = [];
         preg_match_all('/<\/h2>(?s).*?<h2>/', $content, $matches);
@@ -69,6 +84,7 @@ class RewriteArticleForUni extends Command
             $paragraph = str_replace(["\n\n", "\r\n\r\n"], "\n", $paragraph);
             $paragraph = str_replace(["\n\n", "\r\n\r\n"], "\n", $paragraph);
             $paragraph = str_replace(["-\r\n", "-\n"], "-", $paragraph);
+            $paragraph = ltrim(rtrim($paragraph));
             $rewritten = TextGenerationService::generate($paragraph, $spell);
             $rewrittenArticle[$h2Html[$key]] = $rewritten;
         }
