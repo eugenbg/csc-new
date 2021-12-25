@@ -132,6 +132,19 @@ class UniquenessTestingService
         return $this->compareData($shingles1, $shingles2);
     }
 
+    public function hasDuplicates($testedText, $existingTexts, $threshold = 20, $stopWords = [])
+    {
+        $this->setStopWords($stopWords);
+        foreach ($existingTexts as $existingText) {
+            $rate = $this->run($testedText, $existingText);
+            if($rate > $threshold) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
     /**
      * Сравниваем пачку данных с исходным текстом
      * @param $shingles1

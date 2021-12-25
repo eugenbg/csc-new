@@ -4,6 +4,7 @@ namespace App\Console\Commands;
 
 use App\Models\Article;
 use App\Models\ChinaUniversity;
+use App\Models\ContentChunk;
 use App\Services\UniquenessTestingService;
 use Illuminate\Console\Command;
 use Symfony\Component\DomCrawler\Crawler;
@@ -47,11 +48,12 @@ class Test extends Command
     public function handle()
     {
         $uniId = $this->argument('uniId');
-        $pieceNumber = $this->argument('uniId');
-        if($uniId) {
+        $pieceNumber = $this->argument('pieceNumber');
+        $this->compareContentChunks($pieceNumber);
+/*        if($uniId) {
             $this->comparePiecesOfOneArticleToAllOthers($uniId, $pieceNumber);
         }
-        $this->compareAllUniAgainstAllUnis(1);
+        $this->compareAllUniAgainstAllUnis(1);*/
     }
 
     private function comparePiecesOfOneArticleToAllOthers($uniId, $pieceNumber = 1)
@@ -97,5 +99,38 @@ class Test extends Command
         foreach ($unis as $uni) {
             $this->comparePiecesOfOneArticleToAllOthers($uni->id, $pieceNumber);
         }
+    }
+
+    private function compareContentChunks($pieceNumber)
+    {
+        $contentChunks = ContentChunk::query()
+            ->where('piece', '=', $pieceNumber)
+            ->get();
+        $service = resolve(UniquenessTestingService::class);
+        $service->setStopWords(['Central South University', 'CSU', 'CSCU']);
+
+        $duplicates = [];
+        foreach ($contentChunks as $contentChunk) {
+            foreach ($contentChunks->except([$contentChunk->id, 1]) as $otherChunk) {
+                /** @var UniquenessTestingService $service */
+                $result = $service->run(
+                    $contentChunk->text,
+                    $otherChunk->text,
+                    3
+                );
+
+                if($result > 20) {
+                    $this->info(sprintf('chunk %s and chunk %s are the %s percent the same', $contentChunk->id, $otherChunk->id, $result));
+                    $duplicates[] = $otherChunk->id;
+                }
+            }
+        }
+
+        $duplicates = array_unique($duplicates);
+        $this->info(sprintf('deleting %s duplicates', count($duplicates)));
+
+        ContentChunk::query()
+            ->whereIn('id', $duplicates)
+            ->delete();
     }
 }

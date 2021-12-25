@@ -7,7 +7,7 @@ use GuzzleHttp\Client;
 
 class TextGenerationService {
 
-    public static function generate($inputText, Spell $spell)
+    public static function generate($inputText, Spell $spell, $qty = 1)
     {
         $client = new Client();
         $payload = sprintf($spell->prompt, $inputText);
@@ -21,6 +21,7 @@ class TextGenerationService {
             'headers' => ['Authorization' => sprintf('Bearer %s', $apiKey)],
             'json' => [
                 'prompt' => $payload,
+                'n' => $qty,
                 'max_tokens' => $tokens, //200
                 "temperature" => (float) $spell->temperature, //0.2
                 "top_p" => (float) $spell->top_p, //1
@@ -30,7 +31,16 @@ class TextGenerationService {
         ]);
 
         $result = json_decode($response->getBody()->__toString(), true);
-        return $result["choices"][0]["text"];
+        if($qty == 1) {
+            return $result["choices"][0]["text"];
+        }
+
+        $texts = [];
+        foreach ($result["choices"] as $choice) {
+            $texts[] = $choice['text'];
+        }
+
+        return $texts;
     }
 
     public function getEngines()
