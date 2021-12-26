@@ -1,46 +1,16 @@
 <?php
 
-namespace App\Console\Commands;
+namespace App\Services;
 
 use App\Models\ChinaUniversity;
-use Illuminate\Console\Command;
 
-class ArticleText2Html extends Command
-{
-    /**
-     * The name and signature of the console command.
-     *
-     * @var string
-     */
-    protected $signature = 'text2html {uniId?}';
+class ArticleText2HtmlService {
 
-    /**
-     * The console command description.
-     *
-     * @var string
-     */
-    protected $description = 'Command description';
-
-    /**
-     * Create a new command instance.
-     *
-     * @return void
-     */
-    public function __construct()
+    public function convert(ChinaUniversity $uni)
     {
-        parent::__construct();
-    }
-
-    /**
-     * Execute the console command.
-     *
-     * @return int
-     */
-    public function handle()
-    {
-        $uniId = $this->argument('uniId');
-        $uni = ChinaUniversity::find($uniId);
-
+        if($uni->id == 2) {
+            $a = 0;
+        }
         $matches = [];
         $generated = json_decode($uni->generated, true);
 
@@ -48,18 +18,23 @@ class ArticleText2Html extends Command
         foreach ($generated as $header => $paragraph) {
             $original = $paragraph;
             $paragraph .= "\n";
-            preg_match_all('/(\n-|: -)(.*)/', $paragraph, $matches);
-            foreach ($matches[0] as $key => $match) {
-                $replacement = '<li>' . $matches[2][$key] . '</li>';
-                $paragraph = str_replace($match, $replacement, $paragraph);
-            }
+            $splitted = preg_split('/(\n-|: -|; -|. -)/', $paragraph);
+            if(count($splitted) > 1) {
+                $paragraph = array_shift($splitted) . '<ul>';
+                foreach ($splitted as $item) {
+                    $paragraph .= sprintf('<li>%s</li>', $item);
+                }
 
-            preg_match_all('/<li>(.*)<\/li>/', $paragraph, $matches);
-            if(count($matches[0])) {
-                $paragraph = str_replace($matches[0][0], '<ul>' . $matches[0][0] . '</ul>', $paragraph);
+                $paragraph .= '</ul>';
             }
 
             $paragraph = str_replace("\n", '<br/>', ltrim(rtrim($paragraph)));
+            $paragraph = str_replace(['ENDcapitalisation', 'etc....... Thankyou!endez', '\endline\r'], ' ', $paragraph);
+            $paragraph = str_replace([2016, 2017, 2018, 2019, 2020, 2021], 2022, $paragraph);
+            $paragraph = str_replace(['Central South University', 'Central Southern University', '%uni'], $uni->name, $paragraph);
+            $paragraph = str_replace(['CSU', 'CSCU', 'SFU'], $uni->abbr, $paragraph);
+
+            $paragraph = ltrim(rtrim($paragraph, '"'), '"');
             $formatted .= $header . $paragraph;
         }
 
@@ -124,4 +99,6 @@ class ArticleText2Html extends Command
 
         return $formatted;
     }
+
+
 }

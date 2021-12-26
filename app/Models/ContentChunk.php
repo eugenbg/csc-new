@@ -10,6 +10,7 @@ use Illuminate\Database\Eloquent\Model;
  * @package App\Models
  *
  * @property string $text
+ * @property int $uni_id
  */
 class ContentChunk extends Model
 {

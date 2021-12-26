@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('content')
     @include('partials.app.hero', [
-        'title' => $uni->name . ' CSC Scholarship',
+        'title' => $uni->name . ' CSC Scholarship ' . $uni->id,
         'description' => '',
     ])
 
