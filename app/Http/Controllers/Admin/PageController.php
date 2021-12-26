@@ -14,8 +14,6 @@ class PageController extends AdminController
      */
     protected $validation = [
         'content'     => 'required|string',
-        'parent_id'   => 'nullable|integer',
-        'description' => 'required|string|max:200',
         'title'       => 'required|string|max:200'
     ];
 

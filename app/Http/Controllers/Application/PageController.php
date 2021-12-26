@@ -32,6 +32,10 @@ class PageController extends Controller
                 $article = Article::query()->find($slug->object_id);
                 return $this->getArticle($article);
 
+            case Page::class:
+                $page = Page::query()->find($slug->object_id);
+                return $this->getPage($page);
+
             case Category::class:
                 $category = Category::query()->find($slug->object_id);
                 return $this->getCategory($category);
@@ -73,7 +77,6 @@ class PageController extends Controller
     {
         return view('app.articles', [
             'title' => $category->title,
-            'description' => $category->description,
             'articles' => Article::where('category_id', $category->id)->paginate(4)
         ]);
     }

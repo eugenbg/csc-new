@@ -13,7 +13,6 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
  * @property string $slug
  * @property int|null $parent_id
  * @property string $title
- * @property string $description
  * @property string $content
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
@@ -27,7 +26,6 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
  * @method static \Illuminate\Database\Eloquent\Builder|Page query()
  * @method static \Illuminate\Database\Eloquent\Builder|Page whereContent($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Page whereCreatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Page whereDescription($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Page whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Page whereParentId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Page whereSlug($value)
@@ -38,6 +36,8 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 class Page extends SluggableModel
 {
     use HasFactory;
+
+    protected $guarded = [];
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
