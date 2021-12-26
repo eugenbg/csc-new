@@ -138,6 +138,7 @@ class PageController extends Controller
         return view($view, [
             'content' => $content,
             'uni' => $uni,
+            'image' => $campusImages[0],
             'programs' => $uni->getPrograms(),
             'campusImages' => $campusImages,
             'dormImages' => $dormImages,

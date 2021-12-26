@@ -11,6 +11,7 @@
                 <div class="column is-offset-2 is-8">
                     <div class="box">
                         <div class="content">
+                            <img style="float: left; width: 40%" class="mr-4 mb-2" src="/images/{{$image->local_path}}" width="40%">
                             {!! $content !!}
                         </div>
                     </div>
@@ -25,15 +26,17 @@
                 <div class="column is-offset-2 is-8">
                     <div class="box">
                         <div>
-                            <h2>Programs and courses available at {{$uni->name}}</h2>
+                            <h2>Programs and courses available at {{$uni->abbr}}</h2>
                             @php
                                 $i = 1;
                             @endphp
                             <ul class="nav nav-tabs" id="myTab" role="tablist">
                                 @foreach ($programs as $type => $programList)
-                                    <li class="nav-item" role="presentation">
-                                        <button class="nav-link {{$i==1 ? 'active' : ''}}" id="{{$type}}-tab" data-bs-toggle="tab" data-bs-target="#{{$type}}" type="button" role="tab" aria-controls="home" aria-selected="true">{{$type}} Programs</button>
-                                    </li>
+                                    @if(count($programList))
+                                        <li class="nav-item" role="presentation">
+                                            <button class="nav-link {{$i==1 ? 'active' : ''}}" id="{{$type}}-tab" data-bs-toggle="tab" data-bs-target="#{{$type}}" type="button" role="tab" aria-controls="home" aria-selected="true">{{$type}} Programs</button>
+                                        </li>
+                                    @endif
                                     @php
                                         $i++;
                                     @endphp
@@ -44,8 +47,10 @@
                                     $i = 1;
                                 @endphp
                                 @foreach ($programs as $type => $programList)
-                                    <div class="container tab-pane fade show {{$i==1 ? 'active' : ''}}" id="{{$type}}" role="tabpanel" aria-labelledby="{{$type}}-tab">
+                                    @if(count($programList))
+                                        <div class="container tab-pane fade show {{$i==1 ? 'active' : ''}}" id="{{$type}}" role="tabpanel" aria-labelledby="{{$type}}-tab">
                                         <div class="row">
+                                            <h2>{{$type}} Programs at {{$uni->name}}</h2>
                                             @foreach ($programList as $programName => $concreteCourses)
                                                 @foreach ($concreteCourses as $course)
                                                     <div class="col-5 m-2">
@@ -59,6 +64,7 @@
                                             @endforeach
                                         </div>
                                     </div>
+                                    @endif
                                     @php
                                         $i++;
                                     @endphp
@@ -76,47 +82,7 @@
             <div class="columns">
                 <div class="column is-offset-2 is-8">
                     <div class="box">
-                        <div id="dorms">
-                            <h2>Available Dorm Rooms</h2>
-                            <table class="table table-hover table-success table-striped">
-                                <thead>
-                                <tr>
-                                    <th scope="col">Room Type</th>
-                                    <th scope="col">Price</th>
-                                    <th scope="col">Toilet</th>
-                                    <th scope="col">Bathroom</th>
-                                    <th scope="col">Internet</th>
-                                    <th scope="col">Air Conditioner</th>
-                                    <th scope="col">Comments</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                @foreach ($dorms as $dorm)
-                                    <tr>
-                                        <td>{{$dorm->type}}</td>
-                                        <td>{{$dorm->rate}}</td>
-                                        <td>{{$dorm->toilet}}</td>
-                                        <td>{{$dorm->bathroom}}</td>
-                                        <td>{{$dorm->internet}}</td>
-                                        <td>{{$dorm->airConditioner}}</td>
-                                        <td>{{$dorm->comments}}</td>
-                                    </tr>
-                                @endforeach
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="section">
-        <div class="container">
-            <div class="columns">
-                <div class="column is-offset-2 is-8">
-                    <div class="box">
-                        <h2>{{$uni->name}} Campus Photos</h2>
+                        <h2>Campus Photos</h2>
                         <div id="carousel-campus" class="carousel slide" data-bs-ride="carousel">
                             <div class="carousel-indicators">
                                 @php
@@ -165,7 +131,7 @@
             <div class="columns">
                 <div class="column is-offset-2 is-8">
                     <div class="box">
-                        <h2>{{$uni->name}} Dorm Photos</h2>
+                        <h2>Dorm Photos</h2>
                         <div id="carousel-dorm" class="carousel slide" data-bs-ride="carousel">
                             <div class="carousel-indicators">
                                 @php
@@ -202,6 +168,47 @@
                                 <span class="carousel-control-next-icon" aria-hidden="true"></span>
                                 <span class="visually-hidden">Next</span>
                             </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <section class="section">
+        <div class="container">
+            <div class="columns">
+                <div class="column is-offset-2 is-8">
+                    <div class="box">
+                        <div id="dorms">
+                            <h2>Available Dorm Rooms</h2>
+                            <table class="table table-hover table-success table-striped">
+                                <thead>
+                                <tr>
+                                    <th scope="col">Room Type</th>
+                                    <th scope="col">Price</th>
+                                    <th scope="col">Toilet</th>
+                                    <th scope="col">Bathroom</th>
+                                    <th scope="col">Internet</th>
+                                    <th scope="col">Air Conditioner</th>
+                                    <th scope="col">Comments</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                @foreach ($dorms as $dorm)
+                                    <tr>
+                                        <td>{{$dorm->type}}</td>
+                                        <td>{{$dorm->rate}}</td>
+                                        <td>{{$dorm->toilet}}</td>
+                                        <td>{{$dorm->bathroom}}</td>
+                                        <td>{{$dorm->internet}}</td>
+                                        <td>{{$dorm->airConditioner}}</td>
+                                        <td>{{$dorm->comments}}</td>
+                                    </tr>
+                                @endforeach
+                                </tbody>
+                            </table>
                         </div>
                     </div>
                 </div>

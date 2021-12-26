@@ -20,3 +20,12 @@ iframe {
     background-size:cover;
     background-position: center center;
 }
+
+.content ul {
+    list-style-position: inside;
+    margin-left: 0;
+}
+
+.hero.is-primary .title {
+    text-align: center;
+}
