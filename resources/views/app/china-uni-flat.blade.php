@@ -2,7 +2,7 @@
 @section("title", $uni->name . ' CSC Scholarship')
 @section('content')
     @include('partials.app.hero', [
-        'title' => $uni->name . ' CSC Scholarship',
+        'title' => $uni->name . ' CSC Scholarship Application Process in 2022',
         'description' => '',
     ])
 

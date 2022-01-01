@@ -21,15 +21,12 @@
     <meta name="token" content="{{ csrf_token() }}">
     <meta itemprop="name" content="@yield('title')">
     <meta itemprop="description" content="@yield('description')">
-    <meta itemprop="image" content="@yield('image')">
-    <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('i/icons/apple-touch-icon.png') }}">
-    <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('i/icons/favicon-32x32.png') }}">
-    <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('i/icons/favicon-16x16.png') }}">
+    <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('i/icons/icon.png') }}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('i/icons/icon.png') }}">
     <link rel="manifest" href="{{ asset('i/icons/site.webmanifest') }}">
     <link rel="mask-icon" href="{{ asset('i/icons/safari-pinned-tab.svg') }}" color="#336699">
-    <link rel="shortcut icon" href="{{ asset('i/icons/favicon.ico') }}">
+    <link rel="shortcut icon" href="{{ asset('i/icons/icon.png') }}">
     <meta name="msapplication-TileColor" content="#336699">
-    <meta name="msapplication-config" content="{{ asset('i/icons/browserconfig.xml') }}">
     <meta name="theme-color" content="#336699">
     <link rel="stylesheet" type="text/css" href="{{ asset(mix('dist/css/app.css')) }}">
     @hasSection('canonical')<link rel="canonical" href="@yield('canonical')">@endif

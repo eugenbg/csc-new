@@ -22,10 +22,13 @@ iframe {
 }
 
 .content ul {
-    list-style-position: inside;
     margin-left: 0;
 }
 
 .hero.is-primary .title {
     text-align: center;
+}
+
+.navbar-item img {
+    max-height: 3rem;
 }

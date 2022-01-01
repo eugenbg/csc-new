@@ -59,6 +59,7 @@ class ArticleText2HtmlService {
     {
         $map = [
             '<h2>Facts To Know</h2>' => [
+                '<h2>China Scholarship Council Facts</h2>',
                 '<h2>Consider This</h2>',
                 '<h2>Things To Consider</h2>',
                 '<h2>Good To Know</h2>',
@@ -93,10 +94,10 @@ class ArticleText2HtmlService {
                 '<h2>How To Make Sure You Are Awarded With The Scholarship</h2>',
             ],
             '<h2>Time Frame</h2>' => [
-                '<h2>CSC Deadlines</h2>',
-                '<h2>Deadlines Of The Submission And Results</h2>',
+                '<h2>China Scholarship Council Application Deadlines</h2>',
+                '<h2>Deadlines Of The Submission And Results For China Scholarship Council</h2>',
                 '<h2>When To Apply And Wait For Results</h2>',
-                '<h2>Application And Results Time Frame</h2>',
+                '<h2>China Scholarship Council Application And Results Time Frame</h2>',
                 '<h2>Target Dates For Applying And Results</h2>',
             ],
         ];

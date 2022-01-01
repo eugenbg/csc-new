@@ -3,7 +3,7 @@
 
 @section('content')
     @include('partials.app.hero', [
-        'title' => $uni->name . ' CSC Scholarship ' . $uni->id,
+        'title' => $uni->name . ' CSC Scholarship Application Process in 2022',
         'description' => '',
     ])
 
@@ -14,7 +14,7 @@
                     <div class="box">
                         <div class="content">
                             @if($uni->image)
-                                <img style="float: left; width: 40%" class="mr-4 mb-2" src="/images/{{$image->local_path}}" width="40%" alt="{{$uni->name}}"/>
+                                <img style="float: left; width: 40%" class="mr-6 mb-2" src="/images/{{$image->local_path}}" width="40%" alt="{{$uni->name}}"/>
                             @endif
                             {!! $content !!}
                         </div>
@@ -36,7 +36,7 @@
                 <div class="column is-offset-2 is-8">
                     <div class="box">
                         <div>
-                            <h2>Programs and courses available at {{$uni->abbr}}</h2>
+                            <h4>Programs and courses available at {{$uni->abbr}} sponsored by the China Scholarship Council</h4>
                             @php
                                 $i = 1;
                             @endphp

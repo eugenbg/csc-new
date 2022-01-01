@@ -131,7 +131,7 @@ if (!function_exists('getMenu')) {
     function getMenu()
     {
         return [
-            'CSC Universities' => [
+            'CSC Eligible Universities' => [
                 'slug' => '',
                 'children'=> Menu::getUniLinks()
             ],
