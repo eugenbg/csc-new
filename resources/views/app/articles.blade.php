@@ -2,7 +2,6 @@
 
 @include('partials.app.sections', [
 'title' => getTitle($title),
-'description' => getDescription($description),
 'image' => getImage()
 ])
 
@@ -10,7 +9,15 @@
     @include('partials.app.hero')
     <section class="section">
         <div class="container">
-            @include('partials.app.articles')
+            <div class="columns">
+                <div class="column is-offset-2 is-8">
+                    <div class="box">
+                        <div class="content">
+                            @include('partials.app.articles')
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
 @endsection

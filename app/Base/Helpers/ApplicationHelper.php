@@ -1,5 +1,7 @@
 <?php
 
+use App\Base\Helpers\Menu;
+
 if (!function_exists('getTitle')) {
     /**
      * @param null   $title
@@ -131,17 +133,14 @@ if (!function_exists('getMenu')) {
         return [
             'CSC Universities' => [
                 'slug' => '',
-                'children'=> [
-                    'Uni 1' => [
-                        'slug' => 'uni 2',
-                        'children'=> [
-                            'Uni 1' => ['slug' => 'uni 1'],
-                            'Uni 2' => ['slug' => 'uni 2'],
-                        ]
-                    ],
-                    'Uni 2' => ['slug' => 'uni 2'],
-                ]
-            ]
+                'children'=> Menu::getUniLinks()
+            ],
+            'Blog' => [
+                'slug' => '',
+                'children'=> Menu::getCategoryLinks()
+            ],
+            'Privacy Policy' => ['slug' => 'privacy-policy'],
+            'Contact Us' => ['slug' => 'contact-us']
         ];
 
         return cache()->remember('menu', 60, function () {

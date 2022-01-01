@@ -135,10 +135,15 @@ class PageController extends Controller
             $content = str_replace('%uni', $uni->name, $article->content);
         }
 
+        $links = $uni->links()
+            ->with(['linkedUni', 'linkedUni.image'])
+            ->get();
+
         return view($view, [
             'content' => $content,
             'uni' => $uni,
-            'image' => $campusImages[0],
+            'links' => $links,
+            'image' => $uni->image ?? null,
             'programs' => $uni->getPrograms(),
             'campusImages' => $campusImages,
             'dormImages' => $dormImages,

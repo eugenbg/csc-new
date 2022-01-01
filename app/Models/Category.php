@@ -36,7 +36,8 @@ class Category extends SluggableModel
 
     protected $fillable = [
         'title',
-        'description'
+        'description',
+        'show_in_menu'
     ];
 
     /**

@@ -1,4 +1,5 @@
 @extends('layouts.app')
+@section("title", $uni->name . ' CSC Scholarship')
 @section('content')
     @include('partials.app.hero', [
         'title' => $uni->name . ' CSC Scholarship',
@@ -18,6 +19,12 @@
             </div>
         </div>
     </section>
+
+    <div>
+        @include('partials.app.uni-links', [
+            'links' => $links,
+        ])
+    </div>
 
     <section class="section">
         <div class="container">

@@ -17,7 +17,7 @@ class CategoryDataTable extends DataTableController
      *
      * @var array
      */
-    protected $columns = ['title'];
+    protected $columns = ['title', 'show_in_menu'];
 
     /**
      * Columns to show relations count

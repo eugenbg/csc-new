@@ -12,7 +12,7 @@ class CategoryController extends AdminController
     /**
      * @var array
      */
-    protected $validation = ['title' => 'required|string|max:200', 'description' => 'required|string|max:160'];
+    protected $validation = ['title' => 'required|string|max:200'];
 
     /**
      * @param \App\Http\Controllers\Admin\DataTables\CategoryDataTable $dataTable

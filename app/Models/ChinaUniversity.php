@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Base\SluggableModel;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Support\Collection;
 
 /**
@@ -97,6 +98,11 @@ class ChinaUniversity extends SluggableModel
         return $this->hasMany(ChinaUniImage::class, 'university_id', 'id');
     }
 
+    public function image(): HasOne
+    {
+        return $this->hasOne(ChinaUniImage::class, 'university_id', 'id');
+    }
+
     public function dorms(): HasMany
     {
         return $this->hasMany(ChinaUniDorm::class, 'university_id', 'id');
@@ -110,6 +116,11 @@ class ChinaUniversity extends SluggableModel
     public function getImage()
     {
         return $this->images()->where('type', '=', ChinaUniImage::TYPE_CAMPUS)->first();
+    }
+
+    public function links(): HasMany
+    {
+        return $this->hasMany(ChinaUniLink::class, 'uni_id', 'id');
     }
 
 }

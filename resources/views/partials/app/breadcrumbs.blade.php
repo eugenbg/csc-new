@@ -1,6 +1,6 @@
 <nav class="breadcrumb is-small is-centered" aria-label="breadcrumbs">
     <ul>
-        <li><a href="{{ route('root') }}">{{ getTitle() }}</a></li>
+        <li><a href="{{ route('root') }}">China Scholarship Council</a></li>
         @if (isset($object->parent))
             <li><a href="{{ $object->parent->link }}">{{ $object->parent->title }}</a></li>
         @elseif (isset($object->category))

@@ -16,20 +16,20 @@
                     @if (isset($payload['children']) && count($payload['children']) > 0)
                         <div class="navbar-item has-dropdown is-hoverable">
                             <div class="navbar-link">
-                                <a class="navbar-item {{ active($payload['slug']) }}" href="{{ $payload['slug'] }}">
+                                <a class="navbar-item {{ active($payload['slug']) }}" href="/{{ $payload['slug'] }}">
                                     {{ $linkText }}
                                 </a>
                             </div>
                             <div class="navbar-dropdown">
                                 @foreach ($payload['children'] as $childLinkText => $child)
-                                    <a class="navbar-item {{ active($child['slug']) }}" href="{{ $child['slug'] }}">
+                                    <a class="navbar-item {{ active($child['slug']) }}" href="/{{ $child['slug'] }}">
                                         {{ $childLinkText }}
                                     </a>
                                 @endforeach
                             </div>
                         </div>
                     @else
-                        <a class="navbar-item" href="{{ $payload['slug'] }}">
+                        <a class="navbar-item" href="/{{ $payload['slug'] }}">
                             {{ $linkText }}
                         </a>
                     @endif

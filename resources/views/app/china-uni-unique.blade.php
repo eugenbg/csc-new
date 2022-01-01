@@ -1,4 +1,6 @@
 @extends('layouts.app')
+@section("title", $uni->name . ' CSC Scholarship')
+
 @section('content')
     @include('partials.app.hero', [
         'title' => $uni->name . ' CSC Scholarship ' . $uni->id,
@@ -11,7 +13,9 @@
                 <div class="column is-offset-2 is-8">
                     <div class="box">
                         <div class="content">
-                            <img style="float: left; width: 40%" class="mr-4 mb-2" src="/images/{{$image->local_path}}" width="40%">
+                            @if($uni->image)
+                                <img style="float: left; width: 40%" class="mr-4 mb-2" src="/images/{{$image->local_path}}" width="40%" alt="{{$uni->name}}"/>
+                            @endif
                             {!! $content !!}
                         </div>
                     </div>
@@ -19,6 +23,12 @@
             </div>
         </div>
     </section>
+
+    <div>
+        @include('partials.app.uni-links', [
+            'links' => $links,
+        ])
+    </div>
 
     <section class="section">
         <div class="container">
@@ -77,6 +87,7 @@
         </div>
     </section>
 
+    @if(count($campusImages))
     <section class="section">
         <div class="container">
             <div class="columns">
@@ -125,7 +136,9 @@
             </div>
         </div>
     </section>
+    @endif
 
+    @if(count($dormImages))
     <section class="section">
         <div class="container">
             <div class="columns">
@@ -174,8 +187,9 @@
             </div>
         </div>
     </section>
+    @endif
 
-
+    @if(count($dormImages))
     <section class="section">
         <div class="container">
             <div class="columns">
@@ -215,6 +229,7 @@
             </div>
         </div>
     </section>
+    @endif
 
     @if($scholarships->count())
         <section class="section">
