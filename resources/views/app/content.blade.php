@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @include('partials.app.sections', [
-'title' => getTitle($title = $object->title),
+'title' => getTitle($title = $object->meta_title ?? $object->title),
 'description' => getDescription($description = $object->description),
 'image' => getImage()
 ])

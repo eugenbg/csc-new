@@ -8,9 +8,6 @@ class ArticleText2HtmlService {
 
     public function convert(ChinaUniversity $uni)
     {
-        if($uni->id == 2) {
-            $a = 0;
-        }
         $matches = [];
         $generated = json_decode($uni->generated, true);
 
@@ -47,7 +44,6 @@ class ArticleText2HtmlService {
         }
 
         $formatted = $this->randomizeHeaders($formatted);
-
 
         $uni->generated_html = $formatted;
         $uni->save();
