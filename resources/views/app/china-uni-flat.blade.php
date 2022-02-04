@@ -1,5 +1,7 @@
 @extends('layouts.app')
 @section("title", $uni->name . ' CSC Scholarship')
+@section("meta_title", $uni->name . ' CSC Scholarship')
+
 @section('content')
     @include('partials.app.hero', [
         'title' => $uni->name . ' CSC Scholarship Application Process in 2022',

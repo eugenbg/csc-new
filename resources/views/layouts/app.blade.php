@@ -4,12 +4,12 @@
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>@yield('title')</title>
+    <title>@yield('meta_title')</title>
     <meta name="rating" content="general">
     <meta name="robots" content="@yield('robots')">
     <meta property="og:locale" content="en_US">
     <meta property="og:url" content="{{ request()->url() }}">
-    <meta property="og:title" content="@yield('title')">
+    <meta property="og:title" content="@yield('meta_title')">
     <meta property="og:image" content="@yield('image')">
     <meta property="og:type" content="website">
     <meta name="description" property="og:description" content="@yield('description')">

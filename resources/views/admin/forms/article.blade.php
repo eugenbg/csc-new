@@ -8,5 +8,6 @@
         @include('partials.admin.form.text', ['attribute' => $a])
     @endforeach
     @include('partials.admin.form.textarea', ['attribute' => 'content'])
+    @include('partials.admin.form.text', ['attribute' => 'meta_title'])
     @include('partials.admin.form.submit')
 @endsection

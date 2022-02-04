@@ -76,6 +76,7 @@ class PageController extends Controller
     public function getCategory(Category $category)
     {
         return view('app.articles', [
+            'category' => $category,
             'title' => $category->title,
             'articles' => Article::where('category_id', $category->id)->paginate(4)
         ]);

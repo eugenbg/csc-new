@@ -1,5 +1,6 @@
 @extends('layouts.app')
 
+@section('meta_title') China Scholarship Council (CSC) Guide @endsection
 @section('title') China Scholarship Council (CSC) Guide @endsection
 
 @section('content')

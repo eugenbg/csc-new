@@ -5,6 +5,8 @@
 'image' => getImage()
 ])
 
+@section("meta_title", $category->title)
+
 @section('content')
     @include('partials.app.hero')
     <section class="section">

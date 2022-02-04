@@ -1,5 +1,6 @@
 @extends('layouts.app')
 @section("title", $uni->name . ' CSC Scholarship')
+@section("meta_title", $uni->name . ' CSC Scholarship')
 
 @section('content')
     @include('partials.app.hero', [
