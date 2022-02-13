@@ -47,7 +47,7 @@ class GenerateContentChunk extends Command
     {
         $sourceArticle = 'china-uni-flat'; //todo make it a param
         $piece = $this->argument('piece');
-        $qty = 50;
+        $qty = 20;
 
         $chunk = ContentChunk::query()
             ->where('source_article', '=', $sourceArticle)

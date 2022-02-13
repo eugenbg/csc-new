@@ -16,7 +16,7 @@ class ComposeUniArticles extends Command
      *
      * @var string
      */
-    protected $signature = 'uni:compose';
+    protected $signature = 'uni:compose {uniIds}';
 
     /**
      * The console command description.
@@ -42,31 +42,11 @@ class ComposeUniArticles extends Command
      */
     public function handle()
     {
-        //$this->assignChunksToUnis();
-        $this->compose();
+        $uniIds = explode(',', $this->argument('uniIds'));
+        $this->compose($uniIds);
     }
 
-    private function assignChunksToUnis()
-    {
-        $unis = ChinaUniversity::query()->get();
-        $contentChunks = ContentChunk::query()->get();
-        $chunksByPiece = [];
-        foreach ($contentChunks as $contentChunk) {
-            $chunksByPiece[$contentChunk->piece][] = $contentChunk;
-        }
-
-        foreach ($unis as $uni) {
-            for ($i = 1; $i <= 6; $i++) {
-                $chunk = array_pop($chunksByPiece[$i]);
-                $chunk->uni_id = $uni->id;
-                $chunk->save();
-            }
-
-            $this->info($uni->name);
-        }
-    }
-
-    private function compose()
+    private function compose($uniIds = [])
     {
         $h2Html = [
             1 => '<h2>Facts To Know</h2>',
@@ -77,7 +57,13 @@ class ComposeUniArticles extends Command
             6 => '<h2>Time Frame</h2>',
         ];
 
-        $unis = ChinaUniversity::query()->get();
+        $builder = ChinaUniversity::query();
+        if(count($uniIds)) {
+            $builder->whereIn('id', $uniIds);
+        }
+
+        $unis = $builder->get();
+
         foreach ($unis as $uni) {
             $chunks = ContentChunk::query()->where('uni_id', '=', $uni->id)->get()->sortBy('piece')->toArray();
             $texts = Arr::pluck($chunks, 'text');

@@ -30,7 +30,7 @@ class ArticleText2HtmlService {
             $paragraph = str_replace(['ENDcapitalisation', 'etc....... Thankyou!endez', '\endline\r', 'Text', 'Ends text_'], ' ', $paragraph);
             $paragraph = str_replace([2016, 2017, 2018, 2019, 2020, 2021], 2022, $paragraph);
             $paragraph = str_replace(['Central South University', 'Central Southern University', 'Central South College', 'Central South', 'University of Central South', 'University of Central-South', '%uni'], $uni->name, $paragraph);
-            $paragraph = str_replace(['CSU', 'CSCU', 'SFU'], $uni->abbr, $paragraph);
+            $paragraph = str_replace(['CSU', 'CSCU', 'SFU', 'CAU'], $uni->abbr, $paragraph);
 
             $paragraph = ltrim(rtrim($paragraph, '"'), '"');
 

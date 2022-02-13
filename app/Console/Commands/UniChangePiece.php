@@ -55,7 +55,7 @@ class UniChangePiece extends Command
 
             $newChunk->uni_id = $uniId;
             $newChunk->save();
-            \Artisan::call('uni:compose');
+            \Artisan::call('uni:compose', ['uniIds' => $uniId]);
         } else {
             $this->error('no available pieces, generate more');
         }
